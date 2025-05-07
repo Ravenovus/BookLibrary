@@ -83,5 +83,27 @@ function presentLibrary(){
     });
 }
 
+const dialog = document.querySelector("dialog");
+const newBookButton = document.querySelector("#newBook");
+const commitBookButton = document.querySelector("#commitBook");
+const cancelNewBookButton = document.querySelector("#cancelBook");
+
+newBookButton.addEventListener("click", ()=>{
+    dialog.showModal();
+});
+
+cancelNewBookButton.addEventListener("click", ()=>{
+    dialog.close();
+});
+
+commitBookButton.addEventListener("click", ()=>{
+    let bookName = document.querySelector("#book_name").value;
+    let bookWriter = document.querySelector("#book_writer").value;
+    let bookYear = document.querySelector("#book_year").value;
+    addBookToLibrary(bookName,bookWriter,bookYear);
+    dialog.close();
+
+})
+
 addBookToLibrary("B3", "Clown 1", "1995");
 addBookToLibrary("B4","Clown 3", "2005");

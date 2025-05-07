@@ -26,5 +26,26 @@
             <button>Toggle Read Completion</button>
         </div>
     </div>
+    <dialog>
+        <h1>Adding New Book:</h1>
+        <form>
+            <div class="formGroup">
+                <label for="book_name">Book Name:</label>
+                <input type="text" name="book_name" id="book_name">
+            </div>
+            <div class="formGroup">
+                <label for="book_writer">Writer:</label>
+                <input type="text" name="book_writer" id="book_writer">
+            </div> 
+            <div class="formGroup">
+                <label for="book_year">Year of release:</label>
+                <input type="number" name="book_year" id="book_year">
+            </div> 
+            <div class="formGroup">
+                <button type="button" id="commitBook">Commit</button>
+                <button type="button" id="cancelBook">Cancel</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>
