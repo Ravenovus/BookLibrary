@@ -31,7 +31,15 @@ Book.prototype.getID = function(){
     return this.bookID;
 }
 
+function removeBook(id){
+    //find the book in the grid to remove it
+    //find the book in the array to remove it
+    let bookToRemove = document.getElementById(id);
+    bookToRemove.remove();
+    let index = myLibrary.findIndex(book => book.getID() === id);
+    myLibrary.splice(index,1);
 
+}
 
 
 function addBookToLibrary(name, writer, year){
@@ -39,7 +47,6 @@ function addBookToLibrary(name, writer, year){
     const newBook = new Book(name,writer,year);
     myLibrary.push(newBook);
     presentLibrary();
-    //collect parameters from form and make book(...)
 }
 
 function presentLibrary(){
@@ -73,11 +80,18 @@ function presentLibrary(){
             let readToggleButton = document.createElement("BUTTON");
             node = document.createTextNode("Toggle Read Completion");
             readToggleButton.appendChild(node);
+            let deleteBookButton = document.createElement("BUTTON");
+            node = document.createTextNode("Remove Book");
+            deleteBookButton.appendChild(node);
+            deleteBookButton.addEventListener("click", function(e){
+                removeBook(e.target.parentElement.id);
+            });
             bookCard.appendChild(name);
             bookCard.appendChild(writer);
             bookCard.appendChild(year);
             bookCard.appendChild(read);
             bookCard.appendChild(readToggleButton);
+            bookCard.appendChild(deleteBookButton);
             library.appendChild(bookCard);
         }
     });
@@ -101,6 +115,9 @@ commitBookButton.addEventListener("click", ()=>{
     let bookWriter = document.querySelector("#book_writer").value;
     let bookYear = document.querySelector("#book_year").value;
     addBookToLibrary(bookName,bookWriter,bookYear);
+    document.querySelector("#book_name").value = "";
+    document.querySelector("#book_writer").value ="";
+    document.querySelector("#book_year").value ="";
     dialog.close();
 
 })
